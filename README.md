@@ -1,14 +1,14 @@
 # KMS-MDZ-FM-Middleware
-Die offizielle Middleware für das Repository für das KI-basierte Wissensmanagement UI des Mittelstand-Digital Zentrums Fokus Mensch.
+Die offizielle Middleware für das Repository für das KI-basierte Wissensmanagement UI des Mittelstand-Digital Zentrums Fokus Mensch. Dieses Repository wurde als Middleware für das Repository [KMS-MDZ-FM](https://github.com/Dabirius/KMS-MDZ-FM.git) entwickelt.
 
 # Document Search & Embedding Service
-This repository contains a Flask-based API service designed to process documents, generate embeddings, and store them in a Qdrant vector database for efficient search and retrieval. The service leverages OpenAI for both text embeddings and language model generation, with support for custom embedding services and language models that adhere to the OpenAI API format, such as vLLM.
+This repository contains a Flask-based API service designed to process documents, generate embeddings, and store them in a Qdrant vector database for efficient search and retrieval. The service leverages support for custom embedding services and language models that adhere to the OpenAI API format, such as vLLM, as well as OpenAI models.
 
 ## Features
 
 - **Document Processing:** Splits text documents into chunks and generates embeddings using a custom service or OpenAI.
 - **Qdrant Integration:** Stores and retrieves document embeddings using Qdrant, a high-performance vector database.
-- **Language Model Response:** Generates responses based on the content of relevant documents, using an LLM model (e.g., custom models or GPT-4).
+- **Language Model Response:** Generates responses based on the content of relevant documents, using an LLM model.
 - **Custom Model Support:** Supports custom models that follow the OpenAI API format, making integration straightforward.
 - **Custom Embedding Model Support:** Allows integration of custom embedding models, with an example endpoint provided in `multilingual_e5.py`.
 - **Logging:** Logs user queries and responses to a file for audit and debugging purposes.
@@ -17,7 +17,6 @@ This repository contains a Flask-based API service designed to process documents
 ## Requirements
 
 - Docker
-- Docker Compose
 
 ## Setup
 
@@ -32,7 +31,7 @@ This repository contains a Flask-based API service designed to process documents
 
    Update the `data.json` file with your API key and other relevant configuration details.
 
-   Below are examples of how the `data.json` file should look with an OpenAI model, a custom model, and a custom embedding service.
+   Below is an example of how the `data.json` file should look with a custom model.
 
    ### Example `data.json` for Custom Model (such as vLLM API)
 
@@ -66,11 +65,11 @@ This repository contains a Flask-based API service designed to process documents
    ```
    The `url_embeddings` field points to a custom embedding service, such as one implemented in `multilingual_e5.py`.
 
-   3. **Run the service using Docker Compose:**
+3. **Run the service using Docker Compose:**
 
-      ```bash
-      docker-compose up --build
-      ```
+   ```bash
+   docker-compose up --build
+   ```
    This will build and start the service, making it available at http://localhost:5000.
 
 ## Endpoints
