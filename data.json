@@ -1,0 +1,26 @@
+{
+    "open_ai_api_key": "{api_key}",
+    "llm": {
+        "open_ai_llm": true,
+        "llm_url": "https://api.openai.com/",
+        "llm_post_body": {
+            "model": "gpt-4o-mini"
+        },
+        "llm_post_header": {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer {api_key}"
+        },
+        "system_prompt": "Du bist ein freundlicher und hilfreicher KI-#Assistent.",
+        "pre_prompt": "Du bist ein Assistent für das durchsuchen von Dokumenten. Beantworte die Frage am Ende des Textes ausschließlich anhand des folgenden Kontext. Gib auch die die Dokumentennamen an, aus deinen du deine Informationen ziehst. Fasse die Antwort nicht zusammen.\n"
+    },
+    "embeddings": {
+        "open_ai_embeddings": true,
+        "embedding_model": "text-embedding-3-large",
+        "embedding_dimension": 3072,
+        "qdrant_collection": "set_name",
+        "url_embeddings": ""
+    },
+    "search": {
+        "top_k": 5
+    }
+}

@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  qdrant:
+    image: qdrant/qdrant
+    container_name: qdrant
+    volumes:
+      - .:/qdrant/storage:z
+    networks:
+      - uux_middleware
+
+  middleware_docker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: dabirius/kms-mdz-fm-middleware:latest
+    container_name: middleware_docker
+    volumes:
+      - .:/app
+    networks:
+      - uux_middleware
+    depends_on:
+      - qdrant
+
+networks:
+  uux_middleware:
+    driver: bridge
