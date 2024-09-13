@@ -24,8 +24,8 @@ This repository contains a Flask-based API service designed to process documents
 1. **Clone the repository:**
 
    ```bash
-   git clone <repository_url>
-   cd <repository_name>
+   git clone https://github.com/Dabirius/KMS-MDZ-FM-Middleware.git
+   cd KMS-MDZ-FM-Middleware
    ```
 
 2. **Configure Environment Variables:**
