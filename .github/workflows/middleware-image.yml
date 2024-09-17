@@ -35,4 +35,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/kms-mdz-fm-middleware:latest
+          tags: ghcr.io/dabirius/kms-mdz-fm-middleware:latest
