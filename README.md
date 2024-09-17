@@ -17,6 +17,7 @@ This repository contains a Flask-based API service designed to process documents
 ## Requirements
 
 - Docker
+- Ubuntu
 
 ## Setup
 

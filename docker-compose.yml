@@ -10,7 +10,7 @@ services:
       - uux_middleware
 
   middleware_docker:
-    image: dabirius/kms-mdz-fm-middleware:latest
+    image: ghcr.io/dabirius/kms-mdz-fm-middleware:latest
     container_name: middleware_docker
     volumes:
       - .:/app
