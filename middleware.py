@@ -95,8 +95,7 @@ def api_call(url, headers, body, system_prompt, user_prompt, pre_prompt):
 # Route to check the health of the service
 @app.route("/health", methods=['GET'])
 def health_check():
-    llm_status = "OpenAI" if isinstance(openai_client, OpenAI) else "Open Source"
-    return f"OK! LLM ist {llm_status}", 200
+    return f"Container is healthy!", 200
 
 # Route to process text and store embeddings in the database
 @app.route("/text_to_db", methods=["POST"])
