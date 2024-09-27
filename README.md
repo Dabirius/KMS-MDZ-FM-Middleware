@@ -19,7 +19,7 @@ This repository contains a Flask-based API service designed to process documents
 - Docker
 - Ubuntu
 
-## Setup
+## Setup - Option 1, build locally
 
 1. **Clone the repository:**
 
@@ -30,7 +30,7 @@ This repository contains a Flask-based API service designed to process documents
 
 2. **Configure Environment Variables:**
 
-   Update the `data.json` file with your API key and other relevant configuration details.
+   Update the `data.json` file with your API key and other relevant configuration details. Add ```data.json``` to some local dir and add its file path to the ```docker-compose.yml``` to the volumes section of the middleware_docker.
 
    Below is an example of how the `data.json` file should look with a custom model.
 
@@ -70,6 +70,55 @@ This repository contains a Flask-based API service designed to process documents
 
    ```bash
    docker-compose up --build
+   ```
+   This will build and start the service, making it available at http://localhost:5000.
+
+## Setup - Option 2, pull pre-built images
+
+1. **Download docker-compose.yml and add to local dir**
+
+2. **Add ```data.json``` to some local dir and add its file path to the ```docker-compose.yml``` to the volumes section of the middleware_docker. Adjust the ```data.json``` contents:**
+
+Update the `data.json` file with your API key and other relevant configuration details.
+
+   Below is an example of how the `data.json` file should look with a custom model.
+
+   ### Example `data.json` for Custom Model (such as vLLM API)
+
+   ```json
+   {
+     "open_ai_api_key": "",
+     "llm": {
+       "open_ai_llm": false,
+       "llm_url": "https://your-custom-llm.com/api/v1/chat/completions",
+       "llm_post_body": { // Should be adjusted to your API endpoint. If open_ai_llm is true, model is needed.
+         "model": "your-model"
+       },
+       "llm_post_header": { // Should be adjusted to your API endpoint. If open_ai_llm is true, the bearer is needed.
+         "Content-Type": "application/json",
+         "Authorization": "Bearer your_custom_api_key"  // Optional, depending on your setup
+       },
+       "system_prompt": "You are a highly knowledgeable AI assistant.",
+       "pre_prompt": "You are an assistant designed to help with document searches. Answer the questions based on the documents."
+     },
+     "embeddings": {
+       "open_ai_embeddings": false, // Set to false for own embedding model
+       "embedding_model": "", // Needed when open_ai_embeddings is true
+       "embedding_dimension": 3072, // Adjust to the input dimension of your embedding model
+       "qdrant_collection": "your_collection_name",
+       "url_embeddings": "https://your-custom-embedding-service.com/api/embeddings" // Add own embedding endpoint here if open_ai_embeddings is false. Example endpoint is in multilingual_e5.py
+     },
+     "search": {
+       "top_k": 5 // Can be adjusted, however it depends on the max context length of your LLM.
+     }
+   }
+   ```
+   The `url_embeddings` field points to a custom embedding service, such as one implemented in `multilingual_e5.py`.
+
+3. **Run the service using Docker Compose:**
+
+   ```bash
+   docker-compose up
    ```
    This will build and start the service, making it available at http://localhost:5000.
 

@@ -13,7 +13,7 @@ services:
     image: ghcr.io/dabirius/kms-mdz-fm-middleware:latest
     container_name: middleware_docker
     volumes:
-      - .:/app
+      - ./<local>/<data.json>:/app/data.json
     networks:
       - uux_middleware
     depends_on:
